@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <nav class="navbar fixed-top navbar-light">
+        <a class="navbar-brand" href="{% url 'dashboard' %}" style="font-size:2rem">
+            <img class="logo_nav" src="{% static 'kantha/images/logo.png'%}">
+            Kantha
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link logout" href="#">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="horizontal">
+    <nav class="sidenav nav flex-column">
+        <a class="nav-link" href="#">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </a>
+        <a class="nav-link" href="{% url 'users:list' %}">
+            <i class="fas fa-users"></i>
+            Active Users
+        </a>
+        <a class="nav-link" href="{% url 'users:pending' %}">
+            <i class="fas fa-user-lock"></i>
+            Pending Activation
+        </a>
+        <a class="nav-link" href="#">
+            <i class="fas fa-user-plus"></i>
+            Register New
+        </a>
+        <a class="nav-link" href="#">
+            <i class="fas fa-image"></i>
+            Header Banner Images
+        </a>
+        <a class="nav-link" href="#">
+            <i class="far fa-image"></i>
+            Footer Banner Images
+        </a>
+        <a class="nav-link" href="#">
+            <i class="fas fa-bell"></i>
+            Broadcast
+        </a>
+    </nav>
+    
+    <div class= "sidenavcontent">
+       
+        {% block dashContent %}
+
+        {% endblock %}
+    
+    </div>
+
+    </div>
+
+{% endblock %}

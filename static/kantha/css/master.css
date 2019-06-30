@@ -1,0 +1,110 @@
+.sidenav {
+    max-width: 22rem;
+    height: 110vh;
+    padding-top: 1rem;
+    background: #343542;
+    align-items: flex-start;
+    position: fixed;
+    z-index: 1000;
+}
+
+.center {
+    text-align: center;
+}
+
+.logout {
+    font-size: 1.15rem;
+    padding-right: 2rem;
+}
+
+.sidenavcontent {
+    padding-left:20rem;
+    padding-top:6rem;
+    padding-right: 1rem;
+}
+
+.navbar {
+    background: #ffffff;
+    -webkit-box-shadow: 0 8px 6px -6px #888;
+    -moz-box-shadow: 0 8px 6px -6px #888;
+    box-shadow: 0 6px 6px -3px #888;
+}
+
+.logo_nav {
+    widows: 3rem;
+    height: 3rem;
+    margin-left: 2rem;
+}
+
+
+.sidenav a{
+    width: 100%;
+    font-size: 1rem;
+    padding: 1.25rem 3rem;
+    color: white;  
+}
+
+.sidenav a:hover {
+    background: #30313E;
+    color: mistyrose;
+}
+
+.sidenav a i {
+    font-size: 1.4rem;
+    padding-right: 1rem;
+}
+
+#profileimage {
+    border-radius: 50%;
+}
+
+.center_image {
+    text-align: center;
+}
+
+.viewdiv {
+    text-align: center;
+}
+
+.horizontal_view {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    justify-content: center;
+}
+.active {
+    background: #30313E;
+}
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+
+.viewlabel {
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+.value {
+    font-size: 1.25rem;
+}
+
+.image_profile_div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+#profileimage {
+    margin-bottom: 1rem;
+}
+#imageinput {
+    margin-left: 9rem;
+}
+
+.container {
+    margin: 1rem;
+}
+
+.updateprofile {
+    margin: 2rem;
+}

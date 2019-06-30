@@ -1,0 +1,59 @@
+{% extends "users/users_base.html" %}
+{% load bootstrap4 %}
+{% comment %} form to add relation {% endcomment %}
+
+{% block userlist %}
+
+<div class="container">
+<form method="POST" action="{% url 'users:addrelation' id=user.id %}">
+    {% csrf_token %}
+    <div class="container">
+    <h3>Add Relation</h3>
+    <label>User: {{ user.uniqueuserid }} </label>
+    </div>
+    <div class="container">
+    <label>Who do you wanna add?</label>
+    <input type="text" class="form-control" autocomplete="on" name="child" id="childid"/>
+    </div>
+    <div class="container">
+    <select name="relation" class="form-control">
+      <option>Please select</option>
+      <option value="Son">Son</option>
+      <option value="Daughter">Daughter</option>
+      <option value="Mother">Mother</option>
+      <option value="Father">Father</option>
+      <option value="Brother">Brother</option>
+      <option value="Sister">Sister</option>
+      <option value="Spouse">Spouse</option>
+    </select>
+    <button class="save btn btn-primary" type="submit" style="margin-top:2rem">ADD</button>
+    </div>
+</form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+$(document).ready( function() {
+  var request_url = "usersautocomp/";
+  var availableTags = [];
+  $.ajax({
+          url: request_url,
+          success: function(data){
+          $.each(data, function(index, text){
+            availableTags.push(text.uniqueuserid)
+          })
+  }
+  })
+  console.log(availableTags);
+  $('#childid').autocomplete({
+    source: availableTags
+  });
+
+});
+</script>
+
+{% endblock %}

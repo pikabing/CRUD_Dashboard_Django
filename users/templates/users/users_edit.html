@@ -1,0 +1,124 @@
+{% extends "users/users_base.html" %}
+
+{% block userlist %}
+<form method="POST" action="{% url 'users:update' pk=user.id %}" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="image_profile_div">
+{% if user.photo %}
+    <img src="{{ user.photo.url }}" width=250 height=250 id="profileimage" alt=""/>
+{% endif %}
+<input type="file" accept="image/*" name="imagestring" id="imageinput"/>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col">
+<label>Name:</label>
+<input type="text" name="name" required class="form-control" value="{{ user.name }}" />
+</div>
+<div class="col">
+<label>Gotra</label>
+        <select name="gotra" class="form-control">
+        {% for got in gotra %}
+            <option value="{{ got.gotraname }}"
+            {% if user.subsurname == got.gotraname %}selected="selected"{% endif %}>
+            {{ got.gotraname }}</option>
+        {% endfor %}
+        </select>
+</div>
+<div class="col">
+<label>Date of Birth:</label>
+<input type="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" class="form-control"  name="dob" value="{{ user.dob }}" />
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col">
+<label>Village:</label>
+        <select name="village" class="form-control">
+        {% for village in villages %}
+            <option value="{{ village.villagename }}"
+            {% if user.village == village.villagename %}selected="selected"{% endif %}>
+            {{ village.villagename }}
+            </option>
+        {% endfor %}
+        </select>
+    </div>
+<div class="col">
+<label>Password:</label>
+<input type="password" class="form-control"  name="password" value="{{ user.password }}" />
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-6">
+<label>Business Category:</label>
+        <select name="businesscategory" class="form-control" id="category">
+            <option value="">Select Category</option>
+        {% for category in businesscategory %}
+           <option value="{{category.businesscategory}}"
+            {% if user.businesscat == category.businesscategory %}selected="selected"{% endif %}>
+            {{category.businesscategory}}
+            </option>
+        {% endfor %}
+        </select>
+</div>
+<div class="col-6" id="type">
+<label>Business Type:</label>
+        <select name="businesstype" class="form-control">
+            <option value="">Select Type</option>
+            {% for type in businesstype %}
+                <option value="{{type.business_name}}"
+                    {% if user.businesstype == type.business_name %}selected="selected"{% endif %}>
+                    {{type.business_name}}
+                </option>
+            {% endfor %}
+        </select>
+</div>
+</div>
+</div>
+
+<button type="submit" class="btn btn-dark updateprofile">Submit</button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$("#category").change(function() {
+var value = $(this).val();
+if (value == 'Business' || value == 'Profession'){
+    $('#type').show();
+    $('select[name=businesstype]').empty();
+    var request_url = "type/" + value;
+    $.ajax({
+            url: request_url,
+            success: function(data){
+            $.each(data, function(index, text){
+                $('select[name=businesstype]').append(
+                $('<option></option>').val(text.business_name).html(text.business_name));
+            })
+    }
+    })
+}
+else 
+    $('#type').hide();
+});
+
+$('#imageinput').change(function(e) {
+    if ((this).files && (this).files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#profileimage').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL((this).files[0]);
+  }
+});
+</script>
+
+{% endblock %}
+

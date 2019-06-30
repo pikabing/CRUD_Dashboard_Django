@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="card text-white bg-dark mb-3 mx-auto text-center justify-content-center" style="max-width: 30rem;margin-top:8rem">
+        <div class="card-header" style="font-size: 3rem">Kantha</div>
+        <div class="card-body">
+            <form method="POST" action="/login/">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-primary btn-lg" style="margin-top: 1rem">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

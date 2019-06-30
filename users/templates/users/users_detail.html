@@ -1,0 +1,47 @@
+{% extends "users/users_base.html" %}
+
+{% block userlist %}
+<div class="jumbotron container viewdiv">
+<img src="{{ users.photo.url }}" id="profileimage" width=300 height=300 class="center_image">
+<div class="row">
+<div class="col-4 horizontal_view">
+    <label class="viewlabel">Name:</label>
+     <p class="value">{{ users.name}}</p>
+</div>
+<div class="col-4 horizontal_view">
+    <label class="viewlabel">User ID:</label>
+    <p class="value">{{ users.uniqueuserid}}</p>
+</div>
+<div class="col-4 horizontal_view">
+    <label class="viewlabel">Gotra:</label>
+    <p class="value">{{ users.subsurname}}</p>
+</div>
+</div>
+<div class="row">
+    <div class="col-4 horizontal_view">
+        <label class="viewlabel">Village:</label>
+            <p class="value">{{ users.village}}</p>
+    </div>
+    <div class="col-4 horizontal_view">
+        <label class="viewlabel">Date of birth:</label>
+        <p class="value">{{ users.dob}}</p>
+    </div>
+    <div class="col-4 horizontal_view">
+        <label class="viewlabel">Password:</label>
+        <p class="value">{{ users.password}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4 horizontal_view">
+        <label class="viewlabel">Bus. Category:</label>
+            <p class="value">{{ users.businesscat}}</p>
+    </div>
+    {% if users.businesstype != "" %}
+        <div class="col-4 horizontal_view">
+            <label class="viewlabel">Bus. Type:</label>
+            <p class="value">{{ users.businesstype}}</p>
+        </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

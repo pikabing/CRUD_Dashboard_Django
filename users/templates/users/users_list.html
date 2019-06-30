@@ -1,0 +1,42 @@
+{% extends "users/users_base.html" %}
+
+{% block userlist %}
+
+    <table class="table">
+    <thead class="thead-dark table-striped">
+    <tr>
+        <th scope="col" class="center">#</th>
+        <th scope="col" class="center">Name</th>
+        <th scope="col" class="center">ID</th>
+        <th scope="col" class="center">Gotra</th>
+        <th scope="col" class="center">Village</th>
+        <th scope="col" class="center">Edit</th>
+        <th scope="col" class="center">Relation</th>
+        <th scope="col" class="center">View</th>
+        <th scope="col" class="center">Delete</th>
+        <th scope="col" class="center">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for user in users  %}
+            <tr>
+                <th scope="row"  class="center">{{ forloop.counter }}</th>
+                <td class="center">{{user.name}}</td>
+                <td class="center">{{user.uniqueuserid}}</td>
+                <td class="center">{{user.subsurname}}</td>
+                <td class="center">{{user.village}}</td>
+                <td class="center"><a href="{% url 'users:edit' id=user.id %}"><i class="fas fa-user-edit"></i></a></td>
+                <td class="center"><a href="{% url 'users:relation' pk=user.id %}"><i class="far fa-plus-square"></i></a></td>
+                <td class="center"><a href="{% url 'users:detail' pk=user.id %}"><i class="fas fa-street-view"></i></a></td>
+                <td class="center"><a href="{% url 'users:delete' pk=user.id %}"><i class="far fa-trash-alt"></i></a></td>
+                {% if user.activestatus == '1' %}
+                    <td class="center"><a href="{% url 'users:makeinactive' id=user.id  %}"><i class="fas fa-check-circle"></i></a></td>
+                {% else %}
+                    <td class="center"><a href="{% url 'users:makeactive' id=user.id  %}"><i class="fas fa-times-circle"></i></a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>    
+        
+{% endblock %}
